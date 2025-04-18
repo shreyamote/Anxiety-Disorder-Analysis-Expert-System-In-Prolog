@@ -78,7 +78,8 @@ These criteria are converted into Prolog rules for diagnosis.
 Here's a complete and detailed Prolog implementation:
 prolog
 CopyEdit
-       % expert_system.pl
+
+              % expert_system.pl
 
               start :-
                   intro,
