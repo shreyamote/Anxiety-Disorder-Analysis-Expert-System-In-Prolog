@@ -75,11 +75,17 @@ These criteria are converted into Prolog rules for diagnosis.
 
 
 # 5. Code
+
+To run, 
+
+                     % expert_system.pl
+
+                     start.
+
+                     
 Here's a complete and detailed Prolog implementation:
 prolog
 CopyEdit
-
-              % expert_system.pl
 
               start :-
                   intro,
