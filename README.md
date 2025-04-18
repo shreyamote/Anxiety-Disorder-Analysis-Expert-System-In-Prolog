@@ -28,24 +28,24 @@ Agoraphobia
 
 3. Modules / Features
 The expert system consists of the following major modules:
-1. Knowledge Base Module
-Stores facts and rules derived from DSM-5 diagnostic criteria.
-Encodes symptom patterns specific to each disorder.
-
-
-2. Inference Engine
-Uses backward chaining to ask questions and draw conclusions.
-Matches user symptoms with rules to infer a possible diagnosis.
-
-
-3. User Interaction Module
-Presents a series of questions to the user regarding symptoms.
-Records user responses (yes/no) and uses them as facts for inference.
-
-
-4. Diagnosis Module
-Generates a potential diagnosis based on symptom match percentage.
-Displays a recommendation to consult a mental health professional.
+        1. Knowledge Base Module
+        Stores facts and rules derived from DSM-5 diagnostic criteria.
+        Encodes symptom patterns specific to each disorder.
+        
+        
+        2. Inference Engine
+        Uses backward chaining to ask questions and draw conclusions.
+        Matches user symptoms with rules to infer a possible diagnosis.
+        
+        
+        3. User Interaction Module
+        Presents a series of questions to the user regarding symptoms.
+        Records user responses (yes/no) and uses them as facts for inference.
+        
+        
+        4. Diagnosis Module
+        Generates a potential diagnosis based on symptom match percentage.
+        Displays a recommendation to consult a mental health professional.
 
 
 
