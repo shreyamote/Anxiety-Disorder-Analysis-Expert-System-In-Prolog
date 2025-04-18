@@ -80,41 +80,45 @@ prolog
 CopyEdit
        % expert_system.pl
 
-       start :-
-           intro,
-           reset_answers,
-           diagnose(Disorder),
-           format("~nBased on your responses, you may be experiencing: ~w~n", [Disorder]),
-           advice(Disorder),
-           nl.
+              start :-
+                  intro,
+                  reset_answers,
+                  diagnose(Disorder),
+                  format("~nBased on your responses, you may be experiencing: ~w~n", [Disorder]),
+                  advice(Disorder),
+                  nl.
 
 
 % Introduction
-       intro :-
-           write("Welcome to the Anxiety Disorder Expert System."), nl,
-           write("Please answer the following questions with yes. or no."), nl, nl.
+       
+              intro :-
+                  write("Welcome to the Anxiety Disorder Expert System."), nl,
+                  write("Please answer the following questions with yes. or no."), nl, nl.
 
 % Reset previous answers
-       reset_answers :-
-           retractall(yes(_)),
-           retractall(no(_)).
+
+              reset_answers :-
+                  retractall(yes(_)),
+                  retractall(no(_)).
 
 
 % Dynamic predicates to store responses
-       :- dynamic yes/1, no/1.
+
+              :- dynamic yes/1, no/1.
 
 % Ask questions
-       ask(Question) :-
-           format("~w ", [Question]),
-           read(Response),
-           nl,
-           ( (Response == yes) -> assert(yes(Question));
-             (Response == no)  -> assert(no(Question)); 
-             write("Please answer with yes. or no."), nl, ask(Question) ).
-       verify(Symptom) :-
-           (yes(Symptom) -> true;
-            no(Symptom) -> fail;
-            ask(Symptom)).
+
+              ask(Question) :-
+                  format("~w ", [Question]),
+                  read(Response),
+                  nl,
+                  ( (Response == yes) -> assert(yes(Question));
+                    (Response == no)  -> assert(no(Question)); 
+                    write("Please answer with yes. or no."), nl, ask(Question) ).
+              verify(Symptom) :-
+                  (yes(Symptom) -> true;
+                   no(Symptom) -> fail;
+                   ask(Symptom)).
 
 
 % Disorder Rules
@@ -161,9 +165,10 @@ CopyEdit
 
 
 % Advice module
-       advice(no_disorder).
-       advice(_) :-
-           write("It is recommended that you consult a licensed mental health professional for a full diagnosis and treatment plan.").
+
+              advice(no_disorder).
+              advice(_) :-
+                  write("It is recommended that you consult a licensed mental health professional for a full diagnosis and treatment plan.").
 
 
 
