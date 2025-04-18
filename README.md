@@ -88,6 +88,7 @@ CopyEdit
            advice(Disorder),
            nl.
 
+
 % Introduction
        intro :-
            write("Welcome to the Anxiety Disorder Expert System."), nl,
@@ -97,6 +98,7 @@ CopyEdit
        reset_answers :-
            retractall(yes(_)),
            retractall(no(_)).
+
 
 % Dynamic predicates to store responses
        :- dynamic yes/1, no/1.
@@ -109,11 +111,11 @@ CopyEdit
            ( (Response == yes) -> assert(yes(Question));
              (Response == no)  -> assert(no(Question)); 
              write("Please answer with yes. or no."), nl, ask(Question) ).
-
        verify(Symptom) :-
            (yes(Symptom) -> true;
             no(Symptom) -> fail;
             ask(Symptom)).
+
 
 % Disorder Rules
        diagnose(generalized_anxiety_disorder) :-
@@ -156,6 +158,7 @@ CopyEdit
        
        diagnose(no_disorder) :-
            write("Your symptoms do not clearly indicate a specific anxiety disorder. However, if you feel distressed, please consult a professional.").
+
 
 % Advice module
        advice(no_disorder).
