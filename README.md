@@ -78,89 +78,89 @@ These criteria are converted into Prolog rules for diagnosis.
 Here's a complete and detailed Prolog implementation:
 prolog
 CopyEdit
-% expert_system.pl
+       % expert_system.pl
 
-start :-
-    intro,
-    reset_answers,
-    diagnose(Disorder),
-    format("~nBased on your responses, you may be experiencing: ~w~n", [Disorder]),
-    advice(Disorder),
-    nl.
+       start :-
+           intro,
+           reset_answers,
+           diagnose(Disorder),
+           format("~nBased on your responses, you may be experiencing: ~w~n", [Disorder]),
+           advice(Disorder),
+           nl.
 
 % Introduction
-intro :-
-    write("Welcome to the Anxiety Disorder Expert System."), nl,
-    write("Please answer the following questions with yes. or no."), nl, nl.
+       intro :-
+           write("Welcome to the Anxiety Disorder Expert System."), nl,
+           write("Please answer the following questions with yes. or no."), nl, nl.
 
 % Reset previous answers
-reset_answers :-
-    retractall(yes(_)),
-    retractall(no(_)).
+       reset_answers :-
+           retractall(yes(_)),
+           retractall(no(_)).
 
 % Dynamic predicates to store responses
-:- dynamic yes/1, no/1.
+       :- dynamic yes/1, no/1.
 
 % Ask questions
-ask(Question) :-
-    format("~w ", [Question]),
-    read(Response),
-    nl,
-    ( (Response == yes) -> assert(yes(Question));
-      (Response == no)  -> assert(no(Question)); 
-      write("Please answer with yes. or no."), nl, ask(Question) ).
+       ask(Question) :-
+           format("~w ", [Question]),
+           read(Response),
+           nl,
+           ( (Response == yes) -> assert(yes(Question));
+             (Response == no)  -> assert(no(Question)); 
+             write("Please answer with yes. or no."), nl, ask(Question) ).
 
-verify(Symptom) :-
-    (yes(Symptom) -> true;
-     no(Symptom) -> fail;
-     ask(Symptom)).
+       verify(Symptom) :-
+           (yes(Symptom) -> true;
+            no(Symptom) -> fail;
+            ask(Symptom)).
 
 % Disorder Rules
-diagnose(generalized_anxiety_disorder) :-
-    verify("Have you been worrying excessively for more than 6 months?"),
-    verify("Do you find it difficult to control your worry?"),
-    verify("Do you often feel restless or on edge?"),
-    verify("Do you feel easily fatigued?"),
-    verify("Do you have difficulty concentrating?"),
-    verify("Do you feel irritable frequently?"),
-    verify("Do you experience muscle tension?"),
-    verify("Do you have sleep disturbances?").
-
-diagnose(panic_disorder) :-
-    verify("Do you experience sudden intense fear or discomfort?"),
-    verify("Do you have palpitations or rapid heart rate?"),
-    verify("Do you experience sweating, trembling, or shaking?"),
-    verify("Do you have shortness of breath or choking sensations?"),
-    verify("Do you worry about future panic attacks?").
-
-diagnose(social_anxiety_disorder) :-
-    verify("Do you fear social situations where you may be judged?"),
-    verify("Do you avoid social interactions or endure them with intense fear?"),
-    verify("Has this fear lasted for more than 6 months?").
-
-diagnose(specific_phobia) :-
-    verify("Do you have an intense fear of a specific object or situation?"),
-    verify("Do you go out of your way to avoid the phobic stimulus?"),
-    verify("Is the fear excessive or unreasonable?"),
-    verify("Does it interfere with your daily life?").
-
-diagnose(separation_anxiety_disorder) :-
-    verify("Do you fear being separated from loved ones?"),
-    verify("Do you experience nightmares about separation?"),
-    verify("Do you complain of physical symptoms when separation occurs or is anticipated?").
-
-diagnose(agoraphobia) :-
-    verify("Do you avoid public places or open spaces?"),
-    verify("Do you fear being unable to escape in case of panic?"),
-    verify("Has this fear persisted for more than 6 months?").
-
-diagnose(no_disorder) :-
-    write("Your symptoms do not clearly indicate a specific anxiety disorder. However, if you feel distressed, please consult a professional.").
+       diagnose(generalized_anxiety_disorder) :-
+           verify("Have you been worrying excessively for more than 6 months?"),
+           verify("Do you find it difficult to control your worry?"),
+           verify("Do you often feel restless or on edge?"),
+           verify("Do you feel easily fatigued?"),
+           verify("Do you have difficulty concentrating?"),
+           verify("Do you feel irritable frequently?"),
+           verify("Do you experience muscle tension?"),
+           verify("Do you have sleep disturbances?").
+       
+       diagnose(panic_disorder) :-
+           verify("Do you experience sudden intense fear or discomfort?"),
+           verify("Do you have palpitations or rapid heart rate?"),
+           verify("Do you experience sweating, trembling, or shaking?"),
+           verify("Do you have shortness of breath or choking sensations?"),
+           verify("Do you worry about future panic attacks?").
+       
+       diagnose(social_anxiety_disorder) :-
+           verify("Do you fear social situations where you may be judged?"),
+           verify("Do you avoid social interactions or endure them with intense fear?"),
+           verify("Has this fear lasted for more than 6 months?").
+       
+       diagnose(specific_phobia) :-
+           verify("Do you have an intense fear of a specific object or situation?"),
+           verify("Do you go out of your way to avoid the phobic stimulus?"),
+           verify("Is the fear excessive or unreasonable?"),
+           verify("Does it interfere with your daily life?").
+       
+       diagnose(separation_anxiety_disorder) :-
+           verify("Do you fear being separated from loved ones?"),
+           verify("Do you experience nightmares about separation?"),
+           verify("Do you complain of physical symptoms when separation occurs or is anticipated?").
+       
+       diagnose(agoraphobia) :-
+           verify("Do you avoid public places or open spaces?"),
+           verify("Do you fear being unable to escape in case of panic?"),
+           verify("Has this fear persisted for more than 6 months?").
+       
+       diagnose(no_disorder) :-
+           write("Your symptoms do not clearly indicate a specific anxiety disorder. However, if you feel distressed, please consult a professional.").
 
 % Advice module
-advice(no_disorder).
-advice(_) :-
-    write("It is recommended that you consult a licensed mental health professional for a full diagnosis and treatment plan.").
+       advice(no_disorder).
+       advice(_) :-
+           write("It is recommended that you consult a licensed mental health professional for a full diagnosis and treatment plan.").
 
 
 
