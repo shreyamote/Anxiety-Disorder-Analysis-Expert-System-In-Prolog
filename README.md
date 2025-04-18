@@ -122,6 +122,7 @@ CopyEdit
 
 
 % Disorder Rules
+
        diagnose(generalized_anxiety_disorder) :-
            verify("Have you been worrying excessively for more than 6 months?"),
            verify("Do you find it difficult to control your worry?"),
